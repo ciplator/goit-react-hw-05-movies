@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 
 import { fetchMovieDetails } from 'movies-api/Api';
-import { Button } from 'components/Button/Button';
+// import { Button } from 'components/Button/Button';
 import { Loader } from 'components/Loader/Loader';
 import { PLACEHOLDER } from 'movies-api/constant-images';
 
@@ -16,7 +16,7 @@ import styled from 'styled-components';
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState(null);
   const location = useLocation();
-  const backButton = useRef(location.state?.from || '/');
+  const back = useRef(location.state?.from || '/');
 
   useEffect(() => {
     const movieDetails = async () => {
@@ -53,8 +53,8 @@ import styled from 'styled-components';
 
   return (
     <main>
-      <Link to={backButton.current}>
-        <Button text="Go back" />
+      <Link to={back.current}>
+       Go back
       </Link>
        {loading ? (
       <Loader />
@@ -91,10 +91,10 @@ import styled from 'styled-components';
     
       <h3>Additional information</h3>
       <Link to="Cast">
-        <Button text="Cast" />
+        Cast
       </Link>
       <Link to="Reviews">
-        <Button text="Reviews" />
+        Reviews
       </Link>
       
       <Suspense fallback={<Loader />}>
